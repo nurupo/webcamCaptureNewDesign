@@ -4,22 +4,18 @@
 
 namespace webcam_capture {
 
+    /**
+     * Uniquely identifies a camera.
+     * While the actual data is hidden by the backend implementations, you can still use it for comparison.
+     */
     class UniqueId {
     public:
         UniqueId(BackendImplementation implementation);
         virtual ~UniqueId();
 
-        /**
-         * @param other Param to compare with
-         * @return Bool result
-         */
         virtual bool operator==(const UniqueId& other);
-
-        /**
-         * @param other Param to compare with
-         * @return Bool result
-         */
         virtual bool operator!=(const UniqueId& other);
+
     protected:
         BackendImplementation implementation;
     };

@@ -5,25 +5,25 @@
 namespace webcam_capture {
 
     /**
-     * @brief Class of frames converting
+     * Handles conversion of pixel formats.
      */
     class ImageFormatConverter{
     public:
         /**
-         * @param ConvertToRGB input frame
-         * @return Converted frame
+         * Converts a video frame to RGB pixel format.
+         * @param Frame to convert.
+         * @return RGB version of the frame.
          */
         static PixelBuffer convertToRGB(const PixelBuffer&);
 
         /**
-         * @param ConvertToRGB input frame
-         * @return Converted frame
+         * Converts a video frame to YUV pixel format.
+         * @param Frame to convert.
+         * @return YUV version of the frame.
          */
         static PixelBuffer convertToYUV(const PixelBuffer&);
+
     private:
-        /**
-         * Static class (Java-ism)
-         */
         ImageFormatConverter();
     };
 

@@ -18,58 +18,69 @@
 #include <video_property.h>
 
 namespace webcam_capture {
-    /**
-     * frame_callback Typedef for frames callback
-     */
+
     typedef std::function<void(PixelBuffer& buffer)> frame_callback;
 
     /**
-     * Contains Interface for Camera realization
+     * Common interface of backend implementations.
+     * Provides access to video capturing and camera information.
      */
     class CameraInterface {
     public:
         CameraInterface() {}
         virtual ~CameraInterface() {}
 
+        //FIXME(nurupo): change CapabilityX to just X in here, since those CapabilityX might be from different camera.
+        //a camera should store a list of all capabilities inside and check against them.
         /**
-         * start Start capturing. Captured frames thows in frame callback
-         * @return Status code
+         * Starts video capturing in specified format with specified resolution and frame rate.
+         * @param capabilityFormat Pixel format in which you want to capture the video frames.
+         * @param capabilityResolution Resolution of the captured video frames.
+         * @param capabilityFps Frame rate of capturing.
+         * @param cb Callback with the captured video frame data.
+         * @return TODO(nurupo): add enum for: already in use, already started, invalid combination of capabilities, unknown error.
          */
         virtual int start(const CapabilityFormat &capabilityFormat, const CapabilityResolution &capabilityResolution,
                           const CapabilityFps &capabilityFps, frame_callback cb) = 0;
+
         /**
-         * stop Stop capturing
-         * @return Status code
+         * Stops video capturing.
+         * @return TODO(nurupo): add enum for: not started. research into more reasons of failure.
          */
         virtual int stop() = 0;         //TODO to add enum with error codes
+
         /**
-         * CaptureFrame Capture one single frame
-         * @return Captured frame
+         * Takes a still photo.
+         * @return Photo image data.
          */
         virtual PixelBuffer* CaptureFrame() = 0;  //TODO
 
         // ----Capabilities----
         /**
-         * @param property Property is one of the VideoPropery enum
-         * @return Video property range
+         * Gets information about a video property range.
+         * @param property Property you want to look up the range of.
+         * @return true on success, false on failure.
          */
         virtual bool getPropertyRange(VideoProperty property, VideoPropertyRange * videoPropRange) = 0; // TODO
 
         /**
-         * @param property Property is one of the VideoPropery enum
-         * @return Property current value
+         * Gets value of a property.
+         * @param property Property to look up the value of.
+         * @return Value of the propety.
          */
         virtual int getProperty(VideoProperty property) = 0; //TODO       //TODO to add enum with error codes
 
         /**
-         * @param property Property is one of the VideoPropery enum
-         * @param value Property value
-         * @return Success status
+         * Sets value of a property.
+         * @param property Property to set the value of.
+         * @param value Value to set.
+         * @return true on success, false on failure.
          */
         virtual bool setProperty(const VideoProperty property,const int value) = 0; //TODO
 
         /**
-         * @return Capabilities vector
+         * Gets information about camera's capabilities, i.e. supported pixel formats, resolutions and FPS.
+         * @return Capabilities the camera supports.
          */
         virtual std::vector<CapabilityFormat> getCapabilities() = 0;
     };

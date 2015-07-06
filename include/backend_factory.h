@@ -6,19 +6,23 @@
 namespace webcam_capture {
 
     /**
-     *  The class representing the factory for BackendInterface entities creating.
+     * Provides access to backends and information of their availability.
      */
     class BackendFactory {
     public:
         /**
-         * @param Specifies a backend you want to use
-         * @return creates specific <framework>_backend and if returns BackendInterface*. Returns nullptr if error (if such BackendImplementations doesn't support)
+         * Creates a backend instance backed by a certain backend implementation.
+         * You are responsible for deleting the returned object.
+         * @param Implementation backing the backend.
+         * @return BackentInterface instance backed by specified backend implementation on success, null on failure.
          */      
         static BackendInterface* getBackend(BackendImplementation implementation);
+
         /**
-         * @return Vector of avaliable backend implementations
+         * @return List of backends the library was built with support of.
          */
         static std::vector<BackendImplementation> getAvailableBackends();
+
     private:
         BackendFactory();
     };

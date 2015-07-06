@@ -4,17 +4,17 @@
     http://www.apache.org/licenses/LICENSE-2.0
   */
 
-/** Information about formats
- *      windows formats: - https://msdn.microsoft.com/en-us/library/windows/desktop/aa370819(v=vs.85).aspx
- *      description about the formats: https://msdn.microsoft.com/en-us/library/windows/desktop/dd206750(v=vs.85).aspx
-  */
-
 #ifndef FORMAT_H
 #define FORMAT_H
 
+/* Media Foundation
+ *   - Formats: https://msdn.microsoft.com/en-us/library/windows/desktop/aa370819(v=vs.85).aspx
+ *   - Description: https://msdn.microsoft.com/en-us/library/windows/desktop/dd206750(v=vs.85).aspx
+ */
+
 namespace webcam_capture {
     /**
-     * Enum of supported video capture formats
+     * Supported pixel formats.
      */
     enum class Format { //Uncompressed RGB Formats
                         RGB8,           /* RGB, 8 bits per pixel (bpp)*/

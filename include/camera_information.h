@@ -12,7 +12,7 @@
 namespace webcam_capture {
 
     /**
-     * Contains informationa about single camera
+     * Brief description of a camera.
      */
     class CameraInformation {
     public:
@@ -25,19 +25,19 @@ namespace webcam_capture {
 
 
       /**
-       * @return Camera unique Id
+       * @return Unique camera id identifying a camera.
        */
       UniqueId* getUniqueId() const { return uniqueId; }
 
       /**
-       * @return Camera Name
+       * @return User-friendly camera name in system-specific string encoding.
        */
       std::string getCameraName() const { return cameraName; }
 
     private:
       std::string cameraName;
       UniqueId * uniqueId;
-    };
+    }; // FIXME(nurupo): we souldn't use pointer to UniqueId but rather UniqueId itself.
 } // namespace webcam_capture
 
 #endif // CAMERA_INFORMATION_H
