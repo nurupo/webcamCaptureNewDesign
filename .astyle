@@ -1,0 +1,14 @@
+--style=1tbs
+--attach-namespaces
+--indent-switches
+--pad-oper
+--pad-header
+--unpad-paren
+--align-pointer=name
+--align-reference=name
+--convert-tabs
+--close-templates
+--break-blocks
+--max-code-length=120
+--lineend=windows
+--suffix=none
